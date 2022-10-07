@@ -1,0 +1,28 @@
+<h2 class="w-50 m-auto mt-5 pt-5" >Login now</h2>
+
+<div *ngIf="error" class="alert alert-danger">
+
+    <h4>{{error}}</h4>
+</div>
+  
+
+<form  action="" (ngSubmit)="submitLogin(loginForm)"  [formGroup]="loginForm" class="w-50 m-auto my-3  " >
+
+    <label for="email"> Email</label>
+    <input type="email" formControlName='email' class="form-control" id="email">
+    <div *ngIf="loginForm.get('email')?.errors  && loginForm.get('email')?.touched " class="alert alert-danger my-2">
+        <p *ngIf="loginForm.get('email')?.errors?.['required']" class="mb-0">email is required</p>
+        <p *ngIf="loginForm.get('email')?.errors?.['email']" class="mb-0">email invalid</p>
+    </div>
+
+
+    <label for="password" >Password</label>
+    <input type="password" formControlName='password' class="form-control" id="password" >
+        <div *ngIf="loginForm.get('password')?.errors  && loginForm.get('password')?.touched " class="alert alert-danger my-2" >
+           <p *ngIf="loginForm.get('password')?.errors?.['required']"  class="mb-0">password is required</p>
+           <p *ngIf="loginForm.get('password')?.errors?.['pattern']"  class="mb-0">password must start upper case..</p>
+        </div>
+
+    <button  [disabled]="loginForm.invalid"  type="submit" class="btn btn-info mt-4" >login</button>
+
+</form>

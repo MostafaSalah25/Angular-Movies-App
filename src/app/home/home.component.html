@@ -1,0 +1,67 @@
+
+<app-header [headerTrendingMovie]="trendingMovies" ></app-header>
+
+<input [(ngModel)]="term"  class=" form-control w-25 h-25" placeholder="search movie" >
+
+<div class="row py-4 ">
+   
+
+    <div class="col-md-4 py-4">
+
+        <div class="bord w-25 my-3"></div>
+        <h2 class="my-3">Trending Movies <br/> To watch Right Now</h2>
+        <p class="text-muted " >Trending Movies To watch Right Now</p>
+        <div class="bord w-100 my-3"></div>
+    </div>
+
+    <div *ngFor="let movie of trendingMovies | searchmovie:term " class="col-md-2">
+        <div class="movie position-relative">
+            <a [routerLink]="['/moviedetails' , movie.id ]">
+                <img [src]=" imgPrefix+movie.poster_path" class="w-100" alt="" >
+                <h3 class=" h6 py-2 fw-bolder">{{movie.original_title}}</h3>
+                <div class="vote p-2 fw-bolder position-absolute top-0 end-0 bg-lights">{{movie.vote_average}}</div>
+            </a>
+      
+        </div>
+    </div>
+</div>
+
+<div class="row py-4 ">
+    <div class="col-md-4 py-4">
+
+        <div class="bord w-25 my-3"></div>
+        <h2 class="my-3">Trending Tv <br/> To watch Right Now</h2>
+        <p class="text-muted " >Trending Tv To watch Right Now</p>
+        <div class="bord w-100 my-3"></div>
+    </div>
+
+    <div *ngFor="let tv of trendingTv" class="col-md-2">
+        <div class="tv position-relative">
+             <img [src]=" imgPrefix+tv.poster_path" class="w-100" alt="" >
+             <h3 class="h6 py-2 fw-bolder">{{tv.name | titlecase}}</h3>
+
+             <div class="vote p-2 fw-bolder position-absolute top-0 end-0 bg-lights">{{tv.vote_average}}</div>
+        </div>
+    </div>
+</div>
+<div class="row py-4 ">
+    <div class="col-md-4 py-4">
+
+        <div class="bord w-25 my-3"></div>
+        <h2 class="my-3">Trending people <br/> To watch Right Now</h2>
+        <p class="text-muted " >Trending people To watch Right Now</p>
+        <div class="bord w-100 my-3"></div>
+    </div>
+
+    <div *ngFor="let person of trendingPeople" class="col-md-2">
+        <div class="tv position-relative">
+             <img [src]=" imgPrefix+person.profile_path" class="w-100" alt="" >
+             <h3 class="h6 py-2 fw-bolder">{{person.name}}</h3>
+        </div>
+    </div>
+</div>
+
+
+
+
+
